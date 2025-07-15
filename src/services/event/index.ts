@@ -1,0 +1,1 @@
+export {getEventsAPI} from './event';
