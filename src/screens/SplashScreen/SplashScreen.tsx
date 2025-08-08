@@ -2,12 +2,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {Image, ImageBackground, StatusBar, Text, View} from 'react-native';
 import {
   ONBOARDING_STACK,
   OnboardingStackParamList,
 } from '../../navigation/AppNavigator';
 import {styles} from './Style';
+import { BG_SPLASH, IC_APP } from '../../constants/ImageConst';
 
 type SplashScreenProps = {
   navigation: NativeStackNavigationProp<
@@ -25,7 +26,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
           navigation.replace(ONBOARDING_STACK.HOMESTACK);
         } else {
           // If the user is not logged in, show the login screen
-          navigation.replace(ONBOARDING_STACK.AUTHSTACK);
+          navigation.replace(ONBOARDING_STACK.ONBOARDINGSCREEN);
         }
       } catch (error) {
         console.error('Error checking login status:', error);
@@ -41,10 +42,18 @@ const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      {/* <Image source={IC_SPLASH} style={styles.logo} /> */}
-      <Text style={styles.appName}>plie</Text>
-    </View>
+   <ImageBackground
+      source={BG_SPLASH}
+      style={styles.background}
+      resizeMode="cover"
+    >
+    <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+
+      <View style={styles.content}>
+        <Image source={IC_APP} style={styles.logo} />
+        <Text style={styles.appName}>Harvest Hub</Text>
+      </View>
+    </ImageBackground>
   );
 };
 

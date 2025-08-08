@@ -3,21 +3,23 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {COLORS} from '../../constants/Colors';
 
 export const styles = StyleSheet.create({
-  container: {
+  content: {
     flex: 1,
-    backgroundColor: COLORS.primaryWhite,
     alignItems: 'center',
+    justifyContent:'center'
+  },
+  background: {
+    flex: 1,
     justifyContent: 'center',
   },
   logo: {
     width: wp('50%'),
-    height: wp('50'),
-    marginBottom: 20,
-    borderRadius: 100,
+    height: wp('50%'),
+    resizeMode: 'contain',
   },
   appName: {
-    fontSize: 24,
-    color: '#fff',
+    fontSize: 20,
     fontWeight: 'bold',
+    color:COLORS.primaryWhite,
   },
 });

@@ -1,42 +1,165 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../constants/Colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fb',
+    backgroundColor: '#00142D',
   },
-  header: {
-    fontSize: 20,
+  titleStyle: {
+    color: COLORS.primaryWhite,
+    fontSize: 12,
     fontWeight: 'bold',
-    marginTop: 20,
-    alignSelf: 'center',
+    marginHorizontal: 16,
+    marginTop: 16,
   },
-  listContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+  storiesContainer: {
+    padding: 16,
   },
-  card: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    marginBottom: 12,
-    padding: 12,
-    borderRadius: 12,
-    elevation: 10,
+  storyItem: {
     alignItems: 'center',
+    marginRight: 16,
   },
-  image: {
+  storyImage: {
     width: 60,
     height: 60,
-    marginRight: 16,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: COLORS.primaryWhite,
+  },
+  storyName: {
+    color: COLORS.primaryWhite,
+    marginTop: 6,
+    fontSize: 12,
+  },
+  feedCard: {
+    marginBottom: 24,
+    marginHorizontal: 16,
+    backgroundColor: '#1A1D23',
     borderRadius: 12,
+    overflow: 'hidden',
   },
-  nameText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
+  feedHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
   },
-  usernameText: {
+  feedProfile: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 12,
+  },
+  feedUsername: {
+    color: COLORS.primaryWhite,
+    fontWeight: 'bold',
     fontSize: 14,
-    color: '#666',
-    marginTop: 4,
   },
+  feedTime: {
+    color: '#ccc',
+    fontSize: 10,
+  },
+  optionsIcon: {
+    color: COLORS.primaryWhite,
+    fontSize: 18,
+  },
+  feedImage: {
+    width: '100%',
+    height: 200,
+  },
+  feedActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+  actionText: {
+    color: COLORS.primaryWhite,
+    fontSize: 13,
+  },
+  feedDescription: {
+    color: COLORS.primaryWhite,
+    fontSize: 12,
+    paddingHorizontal: 12,
+    paddingBottom: 12,
+  },
+  spaceStyle: {
+    height: 10,
+  },
+  storyFlatListStyle: {paddingHorizontal: 16, marginVertical: 10},
+  storyViewContainer: {alignItems: 'center', marginRight: 16},
+  storySubContainer: {
+    borderRadius: 50,
+    padding: 2,
+    borderWidth: 2,
+    borderColor: COLORS.primaryBlueColor,
+    borderStyle: 'dotted',
+  },
+  userImageStyle: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
+  storyPluseImageContainer: {
+    position: 'absolute',
+    right: -6,
+    bottom: -6,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  storyPlusIcon: {
+    width: 16,
+    height: 16,
+    resizeMode: 'contain',
+  },
+  storyTitle: {
+    color: COLORS.primaryWhite,
+    marginTop: 6,
+    fontWeight: '600',
+    fontSize: 10,
+  },
+  feedContainer: {marginHorizontal: 16, marginBottom: 32},
+  feedSubContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  feedUserImage: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    borderWidth: 2,
+    borderColor: COLORS.secondorySkyColor,
+  },
+  feedrowContainer: {flex: 1, marginLeft: 10},
+  feedrowSubContainer: {flexDirection: 'row', alignItems: 'center'},
+  feedTextStyle: {
+    color: COLORS.primaryWhite,
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  iconStyle: {width: 16, height: 16, marginLeft: 6},
+  postTimeStyle: {color: COLORS.primarySkyColor, fontSize: 11},
+  feedImagesStyle: {width: '100%', height: 220, borderRadius: 10},
+  feedActionRowStyle: {
+    flexDirection: 'row',
+    marginTop: 10,
+    paddingRight: 16,
+  },
+  feedActionrowContainer: {flexDirection: 'row', alignItems: 'center'},
+  feedActionIcon: {width: 18, height: 18, marginRight: 4},
+  feedActionTitle: {color: COLORS.primarySkyColor, fontSize: 12, paddingRight: 16},
+  descriptionContainer: {marginTop: 10},
+  descriptionText: {
+    color: COLORS.primaryWhite,
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  detailText: {
+    color: '#ccc',
+    fontSize: 12,
+    lineHeight: 18,
+  },
+  moreText: {color: '#888'},
 });

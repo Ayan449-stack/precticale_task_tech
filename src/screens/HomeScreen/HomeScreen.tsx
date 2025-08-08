@@ -1,124 +1,141 @@
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
   View,
+  Text,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  SafeAreaView,
+  StatusBar,
+  ScrollView,
 } from 'react-native';
-import {
-  IC_LIST_FIVE,
-  IC_LIST_FOUR,
-  IC_LIST_ONE,
-  IC_LIST_THREE,
-  IC_LIST_TWO,
-} from '../../constants/ImageConst';
-import {HOME_STACK, HomeStackParamList} from '../../navigation/HomeStack';
-import {getUserList} from '../../services/home';
 import {styles} from './Style';
+import TopBar from '../../components/TopBar';
+import FilterList from '../../components/FilterList';
+import {
+  FEED_IMAGES,
+  IC_BLUE_TICK,
+  IC_CENTER,
+  IC_COMMENT,
+  IC_FAVORITE,
+  IC_MORE,
+  IC_SHARE,
+  IC_TAG,
+  IC_USER,
+} from '../../constants/ImageConst';
 
-interface User {
-  _id: number;
-  username: string;
-  name: string;
-  mobile: number;
-}
-type NavigationProp = NativeStackNavigationProp<
-  HomeStackParamList,
-  'HomeScreen'
->;
+const stories = ['You', 'Emiley', 'Emma', 'Olivia', 'Michael'];
+const feeds = [
+  {
+    id: '1',
+    username: 'Amelia John',
+    time: '30 sec ago',
+    text: 'Lorem ipsum dolor sit amet. In bibbo jndjdbn bdjhbh bnh met tek consec djs tetur #Justposting #Feed',
+  },
+  {
+    id: '2',
+    username: 'Amelia John',
+    time: '50 sec ago',
+    text: 'Lorem ipsum dolor sit amet. Another random post goes here.',
+  },
+];
 
 const HomeScreen = () => {
-  const navigation = useNavigation<NavigationProp>();
+  const [likedFeedIds, setLikedFeedIds] = useState<string[]>([]);
 
-  const [userList, setUserList] = useState<User[]>([
-    {
-      _id: 11,
-      username: 'user11',
-      name: 'user11',
-      mobile: 9738385897,
-    },
-    {
-      _id: 12,
-      username: 'user12',
-      name: 'user12',
-      mobile: 9738386897,
-    },
-    {
-      _id: 13,
-      username: 'user13',
-      name: 'user13',
-      mobile: 9738387897,
-    },
-    {
-      _id: 14,
-      username: 'user14',
-      name: 'user14',
-      mobile: 9738388897,
-    },
-  ]);
-  // const [localImages] = useState<any[]>([
-  //   require(IC_SPLASH),
-  //   require(IC_SPLASH),
-  //   require(IC_SPLASH),
-  //   require(IC_SPLASH),
-  //   require(IC_SPLASH),
-  //   require(IC_SPLASH),
-  //   require(IC_SPLASH),
-  // ]);
-  useEffect(() => {
-    // getUserListData();
-  }, []);
-  const getUserListData = async () => {
-    try {
-      const data = await getUserList('10');
-      if (data) {
-        console.log('GetUSer Successfull', JSON.stringify(data));
-      }
-    } catch (error) {
-      console.log('Error logging in:', JSON.stringify(error));
-    }
-  };
-  const handleUserPress = (user: User) => {
-    navigation.navigate(HOME_STACK.USERDETAILSCREEN);
+  const toggleLike = (id: string) => {
+    setLikedFeedIds(prev =>
+      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id],
+    );
   };
 
-  const renderItem = ({item, index}: {item: User; index: number}) => (
-    <TouchableOpacity onPress={() => handleUserPress(item)} style={styles.card}>
-      <Image
-        // source={localImages[index % localImages.length]}
-        source={
-          index === 1
-            ? IC_LIST_ONE
-            : index === 2
-            ? IC_LIST_TWO
-            : index === 3
-            ? IC_LIST_THREE
-            : index === 4
-            ? IC_LIST_FOUR
-            : IC_LIST_FIVE
-        }
-        style={styles.image}
-      />
-      <View>
-        <Text style={styles.nameText}> {item.name}</Text>
-        {/* <Text style={styles.usernameText}>Mobile: {item.mobile}</Text> */}
+  const renderStoryItem = ({item, index}: {item: string; index: number}) => (
+    <View style={styles.storyViewContainer}>
+      <View style={styles.storySubContainer}>
+        <Image source={IC_USER} style={styles.userImageStyle} />
+        {index === 0 && (
+          <View style={styles.storyPluseImageContainer}>
+            <Image source={IC_CENTER} style={styles.storyPlusIcon} />
+          </View>
+        )}
       </View>
-    </TouchableOpacity>
+      <Text style={styles.storyTitle}>{item}</Text>
+    </View>
+  );
+
+  const renderFeedItem = (item: (typeof feeds)[0]) => (
+    <View key={item.id} style={styles.feedContainer}>
+      {/* Header */}
+      <View style={styles.feedSubContainer}>
+        <Image source={IC_USER} style={styles.feedUserImage} />
+        <View style={styles.feedrowContainer}>
+          <View style={styles.feedrowSubContainer}>
+            <Text style={styles.feedTextStyle}>{item.username}</Text>
+            <Image source={IC_BLUE_TICK} style={styles.iconStyle} />
+          </View>
+          <Text style={styles.postTimeStyle}>{item.time}</Text>
+        </View>
+        <TouchableOpacity>
+          <Image source={IC_MORE} style={styles.iconStyle} />
+        </TouchableOpacity>
+      </View>
+
+      {/* Image */}
+      <Image source={FEED_IMAGES} style={styles.feedImagesStyle} />
+
+      {/* Action Row */}
+      <View style={styles.feedActionRowStyle}>
+        <View style={styles.feedActionrowContainer}>
+          <Image source={IC_FAVORITE} style={styles.feedActionIcon} />
+          <Text style={styles.feedActionTitle}>12.5K</Text>
+        </View>
+        <View style={styles.feedActionrowContainer}>
+          <Image source={IC_COMMENT} style={styles.feedActionIcon} />
+          <Text style={styles.feedActionTitle}>8.5K</Text>
+        </View>
+        <View style={styles.feedActionrowContainer}>
+          <Image source={IC_SHARE} style={styles.feedActionIcon} />
+          <Text style={styles.feedActionTitle}>5.6K</Text>
+        </View>
+        <View style={styles.feedActionrowContainer}>
+          <Image source={IC_TAG} style={styles.feedActionIcon} />
+          <Text style={styles.feedActionTitle}>1.2K HVT</Text>
+        </View>
+      </View>
+
+      {/* Description */}
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.descriptionText}>Lorem ipsum dolor nbdnf</Text>
+        <Text style={styles.detailText}>
+          {item.text} <Text style={styles.moreText}>...more</Text>
+        </Text>
+      </View>
+    </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>List</Text>
-      <FlatList
-        data={userList}
-        renderItem={renderItem}
-        keyExtractor={item => item._id.toString()}
-        contentContainerStyle={styles.listContainer}
-      />
+      <StatusBar barStyle="light-content" backgroundColor="#000" />
+      <TopBar />
+      <FilterList />
+      <View style={styles.spaceStyle} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Stories section */}
+        <Text style={styles.titleStyle}>Top Stories</Text>
+        <FlatList
+          data={stories}
+          renderItem={({item, index}) => renderStoryItem({item, index})}
+          keyExtractor={(_, index) => index.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.storyFlatListStyle}
+        />
+        <Text style={[styles.titleStyle, {marginVertical: 12, marginTop: 6}]}>
+          My Feeds
+        </Text>
+        {feeds.map(renderFeedItem)}
+        <View style={{height: 50}} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
