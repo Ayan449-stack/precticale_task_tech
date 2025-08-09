@@ -22,7 +22,9 @@ export const IC_FAVORITE_FILL = require('../assets/icons/ic_fill_heart.png');
 export const IC_MESSAGE = require('../assets/icons/ic_message.png');
 export const IC_CENTER = require('../assets/icons/ic_center_button.png');
 
-
+export const IC_FLASH = require('../assets/icons/ic_flash.png');
+export const IC_ROTATE = require('../assets/icons/ic_rotate.png');
+export const IC_FACE = require('../assets/icons/ic_face.png');
 
 
 //images

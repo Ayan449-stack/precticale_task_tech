@@ -31,7 +31,7 @@ const LoginScreen = () => {
       <View style={styles.inputWrapper}>
         <TextInput
           style={styles.input}
-          placeholder="+91 Phone"
+          placeholder="+91  Phone"
           placeholderTextColor="#ccc"
           keyboardType="phone-pad"
         />

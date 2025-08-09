@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
     color: COLORS.primaryWhite,
     fontSize: 16,
     marginBottom: 20,
-    textAlign: 'center',
   },
   inputWrapper: {
     backgroundColor: '#1E2A38',
@@ -37,14 +36,12 @@ export const styles = StyleSheet.create({
   },
   connectText: {
     color: COLORS.primaryWhite,
-    textAlign: 'center',
     fontSize: 14,
     marginBottom: 10,
   },
   policy: {
     color: COLORS.primaryWhite,
     fontSize: 12,
-    textAlign: 'center',
     marginBottom: 20,
   },
   containerStyle: {
